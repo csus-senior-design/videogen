@@ -22,14 +22,18 @@ module pattern_vg
     reg [B+FRACTIONAL_BITS-1:0] ramp_values; // 12-bit fractional end for ramp values
 
     always @ (posedge clk_in or negedge reset) begin
-        vn_out <= vn_in;
-        hn_out <= hn_in;
-        den_out <= dn_in;
-
         if (~reset) begin
             ramp_values <= 0;
+
+            vn_out <= 1'b0;
+            hn_out <= 1'b0;
+            den_out <= 1'b0;
         end
         else begin
+            vn_out <= vn_in;
+            hn_out <= hn_in;
+            den_out <= dn_in;
+
             if (pattern == 8'b0) begin // no pattern
                 r_out <= r_in;
                 g_out <= g_in;
