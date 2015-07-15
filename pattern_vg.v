@@ -21,7 +21,7 @@ module pattern_vg
 
     reg [B+FRACTIONAL_BITS-1:0] ramp_values; // 12-bit fractional end for ramp values
 
-    always @ (posedge clk_in or negedge reset) begin
+    always @ (posedge clk_in) begin
         if (~reset) begin
             ramp_values <= 0;
 
