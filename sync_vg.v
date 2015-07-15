@@ -43,7 +43,7 @@ module sync_vg
 
     
     /* horizontal counter */
-    always @(posedge clk or negedge reset) begin
+    always @(posedge clk) begin
         if (~reset) begin
             h_count <= 0;
         end
@@ -56,7 +56,7 @@ module sync_vg
     end
 
     /* vertical counter */
-    always @(posedge clk or negedge reset) begin
+    always @(posedge clk) begin
         if (~reset) begin
             v_count <= 0;
         end
@@ -71,7 +71,7 @@ module sync_vg
     end
 
     /* field */
-    always @(posedge clk or negedge reset) begin
+    always @(posedge clk) begin
         if (~reset) begin
             field <= 0;
             v_total <= v_total_0;
@@ -92,7 +92,7 @@ module sync_vg
         end
     end
 
-    always @(posedge clk or negedge reset) begin
+    always @(posedge clk) begin
         if (~reset) begin
             {vs_out, hs_out, de_out, field_out} <= 4'b0;
         end
