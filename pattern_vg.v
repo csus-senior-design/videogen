@@ -75,7 +75,7 @@ module pattern_vg
                     b_out <= 8'b0;
                 end
             end
-            else if (pattern == 8'd4) begin // Simple RAMP
+            else if (pattern == 8'd4) begin // RAMP Black to White
                 r_out <= ramp_values[B+FRACTIONAL_BITS-1:FRACTIONAL_BITS];
                 g_out <= ramp_values[B+FRACTIONAL_BITS-1:FRACTIONAL_BITS];
                 b_out <= ramp_values[B+FRACTIONAL_BITS-1:FRACTIONAL_BITS];
@@ -86,7 +86,42 @@ module pattern_vg
                     ramp_values <= ramp_step;
                 else if (dn_in)
                     ramp_values <= ramp_values + ramp_step;
+            end
+            else if (pattern == 8'd5) begin // RAMP Black to Red
+                r_out <= ramp_values[B+FRACTIONAL_BITS-1:FRACTIONAL_BITS];
+                g_out <= 8'b0;
+                b_out <= 8'b0;
 
+                if ((x == total_active_pix - 1) && (dn_in))
+                    ramp_values <= 0;
+                else if ((x == 0) && (dn_in))
+                    ramp_values <= ramp_step;
+                else if (dn_in)
+                    ramp_values <= ramp_values + ramp_step;
+            end
+            else if (pattern == 8'd6) begin // RAMP Black to Green
+                r_out <= 8'b0;
+                g_out <= ramp_values[B+FRACTIONAL_BITS-1:FRACTIONAL_BITS];
+                b_out <= 8'b0;
+
+                if ((x == total_active_pix - 1) && (dn_in))
+                    ramp_values <= 0;
+                else if ((x == 0) && (dn_in))
+                    ramp_values <= ramp_step;
+                else if (dn_in)
+                    ramp_values <= ramp_values + ramp_step;
+            end
+            else if (pattern == 8'd7) begin // RAMP Black to Green
+                r_out <= 8'b0;
+                g_out <= 8'b0;
+                b_out <= ramp_values[B+FRACTIONAL_BITS-1:FRACTIONAL_BITS];
+
+                if ((x == total_active_pix - 1) && (dn_in))
+                    ramp_values <= 0;
+                else if ((x == 0) && (dn_in))
+                    ramp_values <= ramp_step;
+                else if (dn_in)
+                    ramp_values <= ramp_values + ramp_step;
             end
         end
     end
