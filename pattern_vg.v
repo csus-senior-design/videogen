@@ -111,7 +111,7 @@ module pattern_vg
                 else if (dn_in)
                     ramp_values <= ramp_values + ramp_step;
             end
-            else if (pattern == 8'd7) begin // RAMP Black to Green
+            else if (pattern == 8'd7) begin // RAMP Black to Blue
                 r_out <= 8'b0;
                 g_out <= 8'b0;
                 b_out <= ramp_values[B+FRACTIONAL_BITS-1:FRACTIONAL_BITS];
